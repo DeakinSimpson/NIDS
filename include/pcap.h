@@ -25,6 +25,9 @@ public:
     inline PcapHeader getPcapHeader() { return this->header; }
     bool isMicroSeconds() { return (this->header.magicNumber == 2712847316); }
 
+    // checks if link type is ethernet (only one implemented)
+    bool checkValidLinkType() { return (this->header.network == 1); }
+
 private:
     PcapHeader header {};
 
