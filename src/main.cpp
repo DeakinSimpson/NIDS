@@ -25,8 +25,8 @@ int main()
     packet::pkt_rec_head pkt_rec_head {};
     packet::eth_head eth_head {};
 
-    packet::getPktRecHead(*fs, pkt_rec_head);
-    fs->read(reinterpret_cast<char*>(&eth_head), sizeof(eth_head));
+    packet::fsCast(*fs, pkt_rec_head);
+    packet::fsCast(*fs, eth_head);
 
     std::cout << pkt_rec_head << std::endl;
     std::cout << pcapFile.getPcapHeader().network << std::endl;

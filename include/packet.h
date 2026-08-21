@@ -116,8 +116,9 @@ namespace packet
         return false;
     }
 
-    void getPktRecHead(std::ifstream& fs, pkt_rec_head& output)
+    template <typename T>
+    void fsCast(std::ifstream& fs, T& output)
     {
-        fs.read(reinterpret_cast<char*>(&output), sizeof(pkt_rec_head));
+        fs.read(reinterpret_cast<char*>(&output), sizeof(T));
     }
 }
