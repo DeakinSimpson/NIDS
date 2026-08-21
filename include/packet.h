@@ -4,6 +4,7 @@
 #include <iostream>
 #include <array>
 #include <iomanip> // for std::setfill
+#include "filehandler.h"
 
 namespace packet
 {
@@ -95,12 +96,28 @@ namespace packet
             if (i != 5) { std::cout << ":"; }
         }
 
-        // print type:
-        std::cout << "\nType: ";
-        std::cout << eth_head.type[0] << eth_head.type[1] << std::endl;
+        // print type
+        std::cout << "\nType: 0x";
+        std::cout << std::setw(2) << static_cast<unsigned int>(eth_head.type[0]) 
+                  << std::setw(2) << static_cast<unsigned int>(eth_head.type[1])
+                  << std::endl;
         // set back to decimal
         std::cout << std::dec;
 
         return os;
+    }
+
+    // check if the type is ipv4 (0x0800 == ipv4)
+    bool isIPV4(const std::array<uint8_t, 2>& type) {
+        if (    static_cast<unsigned int>(type[0]) == 8 
+            &&  static_cast<unsigned int>(type[1]) == 0) 
+        { return true; }
+
+        return false;
+    }
+
+    void getPktRecHead(std::ifstream& fs, pkt_rec_head& output)
+    {
+        fs.read(reinterpret_cast<char*>(&output), sizeof(pkt_rec_head));
     }
 }
