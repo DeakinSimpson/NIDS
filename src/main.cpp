@@ -4,6 +4,7 @@
 #include "pcap.h"
 #include "packet.h"
 #include "filehandler.h"
+#include "printhelper.h"
 
 #include <filesystem>
 
@@ -12,26 +13,26 @@ namespace testVals
     const std::string fileLocation { "NIDS/test/pcap/01-test.pcap" };
     const std::string fileLocation1 
         { "/home/deakin/Documents/projects/NIDS/test/pcap/01-test.pcap" };
+    const std::string fileLocation2 
+        { "/home/deakin/Documents/projects/NIDS/test/pcap/amd_test.pcapng" };
 } 
 
 int main()
 {
+    using print::operator<<;
+
     fh::FileHandler fileHandler { fh::FileHandler(testVals::fileLocation1) };
-    std::ifstream* fs = fileHandler.getFileStream();
-    if (!fs->good()) { return 1; }
+    std::ifstream& fs = fileHandler.getFileStream();
+    if (!fs.good()) { return 1; }
 
-    PcapFile pcapFile { PcapFile(*fs) };
+    PcapFile pcapFile { PcapFile(fs) };
 
-    packet::pkt_rec_head pkt_rec_head {};
-    packet::eth_head eth_head {};
-
-    packet::fsCast(*fs, pkt_rec_head);
-    packet::fsCast(*fs, eth_head);
-
-    std::cout << pkt_rec_head << std::endl;
-    std::cout << pcapFile.getPcapHeader().network << std::endl;
-    std::cout << eth_head << std::endl;
-    std::cout << "IPV4 ?: " << packet::isIPV4(eth_head.type) << std::endl;
+    for (int i { 0 }; i < 10; ++i)
+    {
+        packet::pcap_packet pkt { packet::pcap_packet(fs) };
+        std::cout << pkt.getPacketRecordHead() << std::endl;
+        std::cout << pkt.getPacket() << std::endl;
+    }
 
     return 0;
 }

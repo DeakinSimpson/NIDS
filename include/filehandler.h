@@ -15,7 +15,7 @@ namespace fh
 
         bool isFSGood() { return file_.good(); }
 
-        std::ifstream* getFileStream() { return &file_; }
+        std::ifstream& getFileStream() { return file_; }
     };
 }
 
