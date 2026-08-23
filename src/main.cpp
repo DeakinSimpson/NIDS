@@ -27,7 +27,7 @@ int main()
 
     PcapFile pcapFile { PcapFile(fs) };
 
-    for (int i { 0 }; i < 10; ++i)
+    for (int i { 0 }; i < 1; ++i)
     {
         packet::pcap_packet pkt { packet::pcap_packet(fs) };
         std::cout << pkt.getPacketRecordHead() << std::endl;

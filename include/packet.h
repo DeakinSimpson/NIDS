@@ -105,7 +105,7 @@ namespace packet
     {
         eth_head                ethernetHeader_;
         ip_pkt_header           ipPacketHeader_;
-        std::vector<uint8_t>   dataField_;
+        std::vector<uint8_t>    dataField_;
 
     public:
         // getters for private fields

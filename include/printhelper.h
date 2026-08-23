@@ -75,25 +75,6 @@ namespace print
             << std::endl;
     }
 
-    // std::ostream& operator<<(
-    //     std::ostream& os
-    //     , const packet::ip_pkt_header& ipPktHeader)
-    // {
-    //     os << "--- Packet Info ---" << std::endl;
-    //     os << "IP version: " << packet::getVersion(ipPktHeader) << std::endl;
-    //     os << "IHL: " << packet::getIHL(ipPktHeader) << std::endl;
-    //     os << "Total Length (including header): " 
-    //         << packet::getTotalLength(ipPktHeader) << std::endl;
-    //     os << "TTL: " << packet::getTTL(ipPktHeader) << std::endl;
-    //     os << "Protocol: " << packet::getProtocol(ipPktHeader) << std::endl;
-    //     os << "src IP: ";
-    //     printIP(ipPktHeader.srcIP);
-    //     os << "dst IP: ";
-    //     printIP(ipPktHeader.dstIP);
-
-    //     return os;
-    // }
-
     std::ostream& operator<<(std::ostream& os, const packet::packet& pkt)
     {
         os << pkt.getEthernetHeader() << '\n';
