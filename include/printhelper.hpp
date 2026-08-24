@@ -1,12 +1,12 @@
 #pragma once
 
-#include <ostream>
-#include "packet.h"
-#include "pcap.h"
+#include <iostream>
+#include <iomanip>
+#include "packet.hpp"
 
 namespace print
 {
-    std::ostream& operator<<(std::ostream& os
+    inline std::ostream& operator<<(std::ostream& os
         , const packet::pkt_rec_head& pkt_rec_head)
     {
         os << "--- Packet Record Header ---" << std::endl;
@@ -20,7 +20,7 @@ namespace print
         return os;
     }
 
-    std::ostream& operator<<(std::ostream& os
+    inline std::ostream& operator<<(std::ostream& os
         , const packet::eth_head& eth_head)
     {
         os << "--- Ethernet Header Info ---" << std::endl;
@@ -53,7 +53,7 @@ namespace print
         return os;
     }
 
-    void printIP(const uint32_t ip_net)
+    inline void printIP(const uint32_t ip_net)
     {
         // NOTE: super innefficient, only use for testing
         // convert in to little endian or big endian based on system
@@ -75,7 +75,7 @@ namespace print
             << std::endl;
     }
 
-    std::ostream& operator<<(std::ostream& os, const packet::packet& pkt)
+    inline std::ostream& operator<<(std::ostream& os, const packet::packet& pkt)
     {
         os << pkt.getEthernetHeader() << '\n';
 

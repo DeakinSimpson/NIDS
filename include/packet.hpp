@@ -1,12 +1,9 @@
 #pragma once
 
 #include <cstdint>
-#include <iostream>
 #include <array>
-#include <iomanip> // for std::setfill
-#include <bitset>
 #include <vector>
-#include "filehandler.h"
+#include <fstream>
 
 #include <arpa/inet.h> // this is used to convert the integers
 

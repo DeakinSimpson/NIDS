@@ -1,0 +1,9 @@
+-xc++
+-std=c++26
+-Wall
+-Wextra
+-Weffc++
+-Wconversion
+-Wsign-conversion
+-pedantic-errors
+-Iinclude

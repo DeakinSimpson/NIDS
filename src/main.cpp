@@ -1,16 +1,14 @@
 #include <iostream>
 #include <fstream> // for ifstream file reading
 #include <string>
-#include "pcap.h"
-#include "packet.h"
-#include "filehandler.h"
-#include "printhelper.h"
-
-#include <filesystem>
+#include "pcap.hpp"
+#include "packet.hpp"
+#include "filehandler.hpp"
+#include "printhelper.hpp"
 
 namespace testVals
 {
-    const std::string fileLocation { "NIDS/test/pcap/01-test.pcap" };
+    const std::string tion { "NIDS/test/pcap/01-test.pcap" };
     const std::string fileLocation1 
         { "/home/deakin/Documents/projects/NIDS/test/pcap/01-test.pcap" };
     const std::string fileLocation2 
@@ -26,6 +24,7 @@ int main()
     if (!fs.good()) { return 1; }
 
     PcapFile pcapFile { PcapFile(fs) };
+    std::cout << pcapFile.getPcapHeader().magicNumber << std::endl;
 
     for (int i { 0 }; i < 1; ++i)
     {

@@ -7,13 +7,13 @@
 #pragma pack(push, 1)
 struct PcapHeader
 {
-    uint32_t magicNumber;
-    uint16_t majorVersion;
-    uint16_t minorVersion;
-    uint32_t reserved1;
-    uint32_t reserved2;
-    uint32_t snapLen;
-    uint32_t network;
+  uint32_t magicNumber;
+  uint16_t majorVersion;
+  uint16_t minorVersion;
+  uint32_t reserved1;
+  uint32_t reserved2;
+  uint32_t snapLen;
+  uint32_t network;
 };
 #pragma pack(pop)
 
